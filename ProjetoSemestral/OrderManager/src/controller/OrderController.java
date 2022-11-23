@@ -31,13 +31,11 @@ public class OrderController implements ActionListener{
 	private JTextField tfManageDescription;	
 	private JTextArea taOrders;
 
-	public OrderController(JTextField tfOrderId, 
-						   JTextField tfName, JTextField tfValue,
+	public OrderController(JTextField tfName, JTextField tfValue,
 						   JTextField tfDescription, JTextField tfManageOrderId,
 						   JTextField tfManageName, JTextField tfManageValue,
 						   JTextField tfManageDescription, JTextArea taOrders) {
 		this.orders = new QueueService();
-		this.tfOrderId = tfOrderId;
 		this.tfName = tfName;
 		this.tfValue = tfValue;
 		this.tfDescription = tfDescription;
@@ -65,7 +63,6 @@ public class OrderController implements ActionListener{
 		storeOrder(order.generateOrderStringToStore(), removedOrder);		
 		JOptionPane.showMessageDialog(null, "Pedido adicionado a fila!");
 		tfName.setText("");
-		tfOrderId.setText("");
 		tfValue.setText("");
 		tfDescription.setText("");
 		orders.start = null;

@@ -24,7 +24,6 @@ public class Tela extends JFrame {
 	private static final long serialVersionUID = -8533024649811972087L;
 	private JPanel contentPane;
 	private JTextField tfName;
-	private JTextField tfOrderId;
 	private JTextField tfValue;
 	private JTextField tfDescription;
 	private JTextField tfManageOrderId;
@@ -70,45 +69,34 @@ public class Tela extends JFrame {
 		
 		JLabel lblName = new JLabel("Nome do Cliente");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblName.setBounds(81, 74, 109, 23);
+		lblName.setBounds(78, 82, 109, 23);
 		pOrder.add(lblName);
-		
-		JLabel lblOrderId = new JLabel("Id Pedido");
-		lblOrderId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblOrderId.setBounds(81, 139, 109, 23);
-		pOrder.add(lblOrderId);
 		
 		JLabel lblOrderValue = new JLabel("Valor");
 		lblOrderValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblOrderValue.setBounds(81, 202,  109, 23);
+		lblOrderValue.setBounds(78, 155,  109, 23);
 		pOrder.add(lblOrderValue);
 		
 		JLabel lblDescription = new JLabel("Description");
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescription.setBounds(81, 273, 109, 23);
+		lblDescription.setBounds(78, 226, 109, 23);
 		pOrder.add(lblDescription);
 		
 		tfName = new JTextField();
 		tfName.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tfName.setBounds(242, 77, 310, 20);
+		tfName.setBounds(239, 85, 310, 20);
 		pOrder.add(tfName);
 		tfName.setColumns(10);
 		
-		tfOrderId = new JTextField();
-		tfOrderId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tfOrderId.setBounds(239, 142, 96, 20);
-		pOrder.add(tfOrderId);
-		tfOrderId.setColumns(10);
-		
 		tfValue = new JTextField();
 		tfValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tfValue.setBounds(239, 205, 157, 20);
+		tfValue.setBounds(236, 158, 157, 20);
 		pOrder.add(tfValue);
 		tfValue.setColumns(10);
 		
 		tfDescription = new JTextField();
 		tfDescription.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tfDescription.setBounds(243, 268, 258, 37);
+		tfDescription.setBounds(240, 221, 258, 37);
 		pOrder.add(tfDescription);
 		tfDescription.setColumns(10);
 		
@@ -202,7 +190,7 @@ public class Tela extends JFrame {
 		scrollPane.setViewportView(taOrders);
 		
 		OrderController orderController = 
-				new OrderController(tfOrderId, tfName, tfValue,
+				new OrderController(tfName, tfValue,
 				   tfDescription, tfManageOrderId,
 				   tfManageName, tfManageValue,
 				   tfManageDescription, taOrders);
