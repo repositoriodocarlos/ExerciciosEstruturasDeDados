@@ -50,8 +50,16 @@ public class OrderController implements ActionListener{
 
 	public void addOrder(boolean removedOrder) throws IOException {
 		Order order = new Order();
+		queryOrders();
+		int size = orders.size();
 		order.Customer = tfName.getText();
-		order.OrderId = tfOrderId.getText();
+		if(size == 0) {
+			order.OrderId = "1";			
+		}else {
+			size ++;
+			order.OrderId = Integer.toString(size);
+		}
+		 
 		order.OrderPrice =  tfValue.getText();
 		order.Description = tfDescription.getText();			
 		storeOrder(order.generateOrderStringToStore(), removedOrder);		
@@ -60,6 +68,8 @@ public class OrderController implements ActionListener{
 		tfOrderId.setText("");
 		tfValue.setText("");
 		tfDescription.setText("");
+		orders.start = null;
+		orders.end = null;
 	}
 
 	private void storeOrder(String order, boolean removedOrder) throws IOException {
@@ -204,11 +214,15 @@ public class OrderController implements ActionListener{
 	
 	public void toListOrders() {
 		try {
+			queryOrders();
 			String ordersToString = orders.showOrders();
-			taOrders.setText(ordersToString);
+			ordersToString += "\n----------- Fim da consulta ------------";
+			taOrders.setText(ordersToString);			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
+		orders.start = null;
+		orders.end = null;
 	}
 
 	@Override

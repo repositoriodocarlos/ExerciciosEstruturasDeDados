@@ -103,7 +103,7 @@ public class QueueService {
 
 		int cont = 0;
 		
-		if(emptyQueue()) {
+		if(!emptyQueue()) {
 			No aux = start;
 			while(aux != null) {
 				cont++;
