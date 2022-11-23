@@ -178,7 +178,7 @@ public class Tela extends JFrame {
 		pManageOrder.add(tfManageDescription);
 		
 		JPanel pListOrders = new JPanel();
-		tabbedPane.addTab("Listar de Pedidos", null, pListOrders, null);
+		tabbedPane.addTab("Listar Pedidos", null, pListOrders, null);
 		pListOrders.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Lista de pedidos");
