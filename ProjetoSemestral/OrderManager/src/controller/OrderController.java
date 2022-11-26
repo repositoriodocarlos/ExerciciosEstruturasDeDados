@@ -21,7 +21,6 @@ import service.QueueService;
 public class OrderController implements ActionListener{
 
 	private QueueService orders;
-	private JTextField tfOrderId;
 	private JTextField tfName;
 	private JTextField tfValue;
 	private JTextField tfDescription;
@@ -54,19 +53,17 @@ public class OrderController implements ActionListener{
 		if(size == 0) {
 			order.OrderId = "1";			
 		}else {
-			size ++;
-			order.OrderId = Integer.toString(size);
+			int neWposition = Integer.parseInt(orders.end.Order.OrderId) + 1;
+			order.OrderId = Integer.toString(neWposition);
 		}
 		 
 		order.OrderPrice =  tfValue.getText();
 		order.Description = tfDescription.getText();			
 		storeOrder(order.generateOrderStringToStore(), removedOrder);		
-		JOptionPane.showMessageDialog(null, "Pedido adicionado a fila!");
+		JOptionPane.showMessageDialog(null, "Pedido "+  order.OrderId + " adicionado a fila!");
 		tfName.setText("");
 		tfValue.setText("");
 		tfDescription.setText("");
-		orders.start = null;
-		orders.end = null;
 	}
 
 	private void storeOrder(String order, boolean removedOrder) throws IOException {
@@ -173,10 +170,22 @@ public class OrderController implements ActionListener{
 			queryOrders();
 			Order order = new Order();
 			order = orders.getOrder(tfManageOrderId.getText());
-			order.Customer = tfManageName.getName();
+			order.Customer = tfManageName.getText();
 			order.OrderPrice = tfManageValue.getText();
 			order.Description = tfManageDescription.getText();
-			JOptionPane.showMessageDialog(null, "Pedido modificado!");
+			No aux = orders.start;
+			int cont = 0;
+			while(aux != null) {
+				if(cont == 0) {
+					storeOrder(aux.Order.generateOrderStringToStore(), true);
+					cont++;
+				}else {
+					storeOrder(aux.Order.generateOrderStringToStore(), false);
+				}
+				
+				aux = aux.Next;
+			}
+			JOptionPane.showMessageDialog(null, "Pedido " + tfManageOrderId.getText() + " modificado!");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -218,8 +227,6 @@ public class OrderController implements ActionListener{
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
-		orders.start = null;
-		orders.end = null;
 	}
 
 	@Override
@@ -234,7 +241,7 @@ public class OrderController implements ActionListener{
 
 			}
 		}
-		if(cmd.equals("Enviar Pedido")) {
+		if(cmd.equals("Enviar proximo pedido")) {
 			sendOrder();
 		}
 		if(cmd.equals("Consultar Pedido")) {
@@ -242,6 +249,11 @@ public class OrderController implements ActionListener{
 		}
 		if(cmd.equals("Listar pedidos")) {
 			toListOrders();
-		}		
+		}
+		if(cmd.equals("Modificar Pedido")) {
+			modifyOrder();
+		}
+		orders.start = null;
+		orders.end = null;
 	}	
 }

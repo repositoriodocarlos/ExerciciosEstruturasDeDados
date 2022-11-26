@@ -70,7 +70,7 @@ public class QueueService {
 			String order = "Código do pedido: " + aux.Order.OrderId
 								   + " | Nome do cliente: " + aux.Order.Customer
 								   + " | Valor: " + aux.Order.OrderPrice
-								   + " | Descrição " + aux.Order.Description + "\n";
+								   + " | Descrição: " + aux.Order.Description + "\n";
 			orderToString += order;
 			aux = aux.Next;
 		}

@@ -105,6 +105,7 @@ public class Tela extends JFrame {
 		pOrder.add(btnToOrder);
 		
 		JPanel pManageOrder = new JPanel();
+		pManageOrder.setToolTipText("Teste");
 		tabbedPane.addTab("Administrar Pedidos", null, pManageOrder, null);
 		pManageOrder.setLayout(null);
 		
@@ -115,54 +116,56 @@ public class Tela extends JFrame {
 		
 		JLabel lblOrderID = new JLabel("Id Pedido");
 		lblOrderID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblOrderID.setBounds(175, 97, 67, 14);
+		lblOrderID.setBounds(183, 54, 67, 14);
 		pManageOrder.add(lblOrderID);
 		
 		tfManageOrderId = new JTextField();
-		tfManageOrderId.setBounds(266, 96, 96, 20);
+		tfManageOrderId.setBounds(274, 53, 96, 20);
 		pManageOrder.add(tfManageOrderId);
 		tfManageOrderId.setColumns(10);
 		
-		JButton btnSendOrder = new JButton("Enviar próximo pedido");
-		btnSendOrder.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSendOrder.setBounds(100, 332, 173, 23);
+		JButton btnSendOrder = new JButton("Enviar proximo pedido");
+		btnSendOrder.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSendOrder.setBounds(24, 319, 187, 46);
 		pManageOrder.add(btnSendOrder);
 		
 		JButton btnQueryOrders = new JButton("Consultar Pedido");
-		btnQueryOrders.setBounds(336, 334, 142, 23);
+		btnQueryOrders.setToolTipText("Digite o  número do pedido que quer alterar, antes de clicar aqui");
+		btnQueryOrders.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnQueryOrders.setBounds(436, 319, 137, 46);
 		pManageOrder.add(btnQueryOrders);
 		
 		JLabel lblName_1 = new JLabel("Nome do Cliente");
 		lblName_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblName_1.setBounds(87, 139, 109, 23);
+		lblName_1.setBounds(95, 96, 109, 23);
 		pManageOrder.add(lblName_1);
 		
 		tfManageName = new JTextField();
 		tfManageName.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfManageName.setColumns(10);
-		tfManageName.setBounds(248, 142, 310, 20);
+		tfManageName.setBounds(256, 99, 310, 20);
 		pManageOrder.add(tfManageName);
 		
 		JLabel lblOrderValue_1 = new JLabel("Valor");
 		lblOrderValue_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblOrderValue_1.setBounds(87, 196, 109, 23);
+		lblOrderValue_1.setBounds(95, 153, 109, 23);
 		pManageOrder.add(lblOrderValue_1);
 		
 		tfManageValue = new JTextField();
 		tfManageValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfManageValue.setColumns(10);
-		tfManageValue.setBounds(248, 198, 157, 20);
+		tfManageValue.setBounds(256, 155, 157, 20);
 		pManageOrder.add(tfManageValue);
 		
 		JLabel lblDescription_1 = new JLabel("Descrição");
 		lblDescription_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescription_1.setBounds(87, 255, 109, 23);
+		lblDescription_1.setBounds(95, 212, 109, 23);
 		pManageOrder.add(lblDescription_1);
 		
 		tfManageDescription = new JTextField();
 		tfManageDescription.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfManageDescription.setColumns(10);
-		tfManageDescription.setBounds(248, 249, 258, 37);
+		tfManageDescription.setBounds(256, 206, 258, 37);
 		pManageOrder.add(tfManageDescription);
 		
 		JPanel pListOrders = new JPanel();
@@ -189,15 +192,26 @@ public class Tela extends JFrame {
 		JTextArea taOrders = new JTextArea();
 		scrollPane.setViewportView(taOrders);
 		
+		JButton btnModfyOrder = new JButton("Modificar Pedido");
+		btnModfyOrder.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnModfyOrder.setBounds(248, 319, 157, 46);
+		pManageOrder.add(btnModfyOrder);
+		
 		OrderController orderController = 
 				new OrderController(tfName, tfValue,
 				   tfDescription, tfManageOrderId,
 				   tfManageName, tfManageValue,
 				   tfManageDescription, taOrders);
 		
+		JLabel lblHowToModify = new JLabel("* Para modificar um pedido, digite seu id, clique em consultar, modifique o valor desejado e clique em modificar pedido.");
+		lblHowToModify.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblHowToModify.setBounds(28, 276, 538, 23);
+		pManageOrder.add(lblHowToModify);
+		
 		btnToOrder.addActionListener(orderController);
 		btnListOrders.addActionListener(orderController);
 		btnSendOrder.addActionListener(orderController);
 		btnQueryOrders.addActionListener(orderController);
+		btnModfyOrder.addActionListener(orderController);
 	}
 }
